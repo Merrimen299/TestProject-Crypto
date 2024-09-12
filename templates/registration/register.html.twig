@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profile{% endblock %}
-
+{% block title %}Register{% endblock %}
 {% block stylesheets %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 {% endblock %}
 {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 {% endblock %}
+
 
 {% block body %}
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -19,10 +19,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Main Page</a>
+                        <a class="nav-link" href="{{ path('app_main') }}">Main Page</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/login">Log in</a>
+                        <a class="nav-link" href="{{ path('app_login') }}">Log in</a>
                     </li>
                 </ul>
             </div>
@@ -30,28 +30,14 @@
     </nav>
     <div class="container">
         <div class="row mt-5">
-            <h1>Profile</h1>
-            <h2>{{ user.firstName }} {{ user.lastName }} Wallet</h2>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">Market</th>
-                    <th scope="col">Number</th>
-                    <th scope="col">Sell Price</th>
-                    <th scope="col">Amount</th>
-                </tr>
-                </thead>
-                <tbody>
-                {%  for item in user.balances %}
-                    <tr>
-                        <th scope="row">{{item.market}}</th>
-                        <td>{{ item.number}}</td>
-                        <td>{{ item.price}}</td>
-                        <td>{{ item.amount }}</td>
-                    </tr>
-                {%  endfor %}
-                </tbody>
-            </table>
+            <h1>Register</h1>
+
+            {{ form_errors(registrationForm) }}
+
+            {{ form_start(registrationForm) }}
+            {{ form_widget(registrationForm) }}
+            {{ form_end(registrationForm) }}
         </div>
+        <a href="{{ path('app_login') }}">Already have an account? Sign in here!</a>
     </div>
 {% endblock %}
